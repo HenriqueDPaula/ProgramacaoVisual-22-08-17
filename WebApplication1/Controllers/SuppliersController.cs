@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Content;
 using WebApplication1.Models;
+using System.Data.Entity;
 
 namespace WebApplication1.Controllers
 {
@@ -68,8 +69,13 @@ namespace WebApplication1.Controllers
 
         public ActionResult Edit(Supplier supplier)
         {
-            _context.Suppliers.Add(supplier);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Entry(supplier)
+                    .State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
         #endregion
