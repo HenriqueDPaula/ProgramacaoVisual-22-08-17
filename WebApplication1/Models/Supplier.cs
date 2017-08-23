@@ -9,7 +9,7 @@ namespace WebApplication1.Models
     public class Supplier
     {
         public long SupplierId { get; set; }
- 
+        [Required]
         public string Name { get; set; }
     }
 }
